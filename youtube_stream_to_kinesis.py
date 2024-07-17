@@ -10,7 +10,10 @@ import logging
 load_dotenv()
 
 LOG_FORMAT = '%(levelname)s %(asctime)s %(module)s %(message)s'
-logging.basicConfig(filename="youtube_streams.log", format=LOG_FORMAT, level=logging.DEBUG)
+logging.basicConfig(filename="youtube_streams.log",
+                    format=LOG_FORMAT,
+                    level=logging.DEBUG)
+
 log = logging.getLogger()
 
 # YouTube API credentials
@@ -60,8 +63,9 @@ def send_to_kinesis(data):
     except Exception as e:
         log.error(f"Error sending data to Kinesis: {e}")
 
+
 def main():
-    keywords = ['AWS', 'Cloud', 'Data']
+    keywords = ['AWS', 'Cloud']
     for keyword in keywords:
         youtube_data = get_youtube_data(keyword)
         for item in youtube_data:
